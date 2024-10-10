@@ -2,45 +2,104 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Estilos globales */
 body {
-  font-family: 'Inter', sans-serif; 
-  background: linear-gradient(to right, #4a0396, #2575fc); 
-  background-size: 200% 200%; 
-  animation: gradient 15s ease infinite; 
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+/* Modo oscuro */
+.night-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.night-mode input {
+  background-color: #333;
+  color: #ffffff;
+}
+
+.night-mode .bg-white {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.night-mode .text-white {
+  color: #ffffff;
 }
 
 
-body.night-mode {
-  background: linear-gradient(to right, #1a1a2e, #16213e, #0f3460); 
+.bg-sunny {
+  background: linear-gradient(to bottom, #ffdf00, rgb(250, 59, 1));
+}
+
+.bg-cloudy {
+  background: linear-gradient(to bottom, #d3d3d3, #a9a9a9);
+}
+
+.bg-rainy {
+  background: linear-gradient(to bottom, #3a7bd5, #00d2ff);
+}
+
+.bg-hot {
+  background: linear-gradient(to bottom, #ff512f, #f09819);
 }
 
 
-@keyframes float {
-  0% {
-    transform: translateY(0px); 
-  }
-  50% {
-    transform: translateY(-10px); 
-  }
-  100% {
-    transform: translateY(0px); 
-  }
+button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: inherit;
+}
+
+
+input {
+  border: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+input:focus {
+  outline: none;
+}
+
+
+.weather-container {
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+
+.forecast-card {
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.forecast-card p {
+  margin: 0;
 }
 
 
 .animate-float {
-  animation: float 3s ease-in-out infinite; 
+  animation: float 2s infinite ease-in-out;
 }
 
-
-@keyframes gradient {
+@keyframes float {
   0% {
-    background-position: 0% 50%;
+    transform: translateY(0);
   }
   50% {
-    background-position: 100% 50%;
+    transform: translateY(-10px);
   }
   100% {
-    background-position: 0% 50%;
+    transform: translateY(0);
   }
 }

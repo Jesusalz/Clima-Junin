@@ -69,10 +69,10 @@ function App() {
                            'bg-gradient-to-br from-blue-400 to-purple-500';
 
   return (
-    <div className={`min-h-screen ${backgroundClass} ${isDarkMode ? 'bg-opacity-90' : ''} text-white p-8`}>
+    <div className={`min-h-screen ${isDarkMode ? 'night-mode' : backgroundClass}`}>
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold">{city}</h1>
+          <h1 className="text-4xl font-bold text-white">{city}</h1>
           <button
             onClick={toggleDarkMode}
             className="p-2 rounded-full bg-white text-black focus:outline-none shadow-lg"
@@ -88,14 +88,14 @@ function App() {
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Buscar ciudad..."
             className="p-2 rounded-l-md w-full h-10 text-sm focus:outline-none text-black placeholder-gray-500"
-            style={{ backgroundColor: isDarkMode ? '#fff' : '#f7f7f7' }}
+            style={{ backgroundColor: isDarkMode ? '#333' : '#f7f7f7', color: isDarkMode ? '#fff' : '#000' }}
           />
           <button type="submit" className="p-2 bg-white text-black rounded-r-md h-10">
             <Search className="w-5 h-5" />
           </button>
         </form>
 
-        <div className="bg-white bg-opacity-20 backdrop-blur-md rounded-lg p-6 mb-8 shadow-lg">
+        <div className="bg-white bg-opacity-20 backdrop-blur-md rounded-lg p-6 mb-8 shadow-lg text-white">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-3xl font-semibold">{Math.round(weather.main.temp)}°C</h2>
@@ -118,12 +118,12 @@ function App() {
           </div>
         </div>
 
-        <h3 className="text-2xl font-semibold mb-4">Próximos días</h3>
+        <h3 className="text-2xl font-semibold mb-4 text-white">Próximos días</h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
           {dailyForecast.map((day) => (
             <div
               key={day.dt}
-              className="bg-white bg-opacity-20 backdrop-blur-md rounded-lg p-4 text-center shadow-lg"
+              className="bg-white bg-opacity-20 backdrop-blur-md rounded-lg p-4 text-center shadow-lg text-white"
             >
               <p className="font-semibold">
                 {new Date(day.dt * 1000).toLocaleDateString('es-AR', { weekday: 'long' })}
