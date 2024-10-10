@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', sans-serif; 
+  background: linear-gradient(to right, #4a0396, #2575fc); 
+  background-size: 200% 200%; 
+  animation: gradient 15s ease infinite; 
+}
+
+
+body.night-mode {
+  background: linear-gradient(to right, #1a1a2e, #16213e, #0f3460); 
+}
+
+
+@keyframes float {
+  0% {
+    transform: translateY(0px); 
+  }
+  50% {
+    transform: translateY(-10px); 
+  }
+  100% {
+    transform: translateY(0px); 
+  }
+}
+
+
+.animate-float {
+  animation: float 3s ease-in-out infinite; 
+}
+
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
