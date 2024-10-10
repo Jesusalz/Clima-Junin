@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Estilos globales */
+
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
@@ -10,9 +10,9 @@ body {
   color: #333;
 }
 
-/* Modo oscuro */
+
 .night-mode {
-  background-color: #121212;
+  background-color: #300101;
   color: #ffffff;
 }
 
