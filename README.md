@@ -20,8 +20,8 @@ Esta aplicación de clima permite a los usuarios buscar el clima actual y la pre
 
 ## 📸 Capturas de Pantalla
 
-![Pantalla 1](Clima-Junin-1.png)
+![P1](public/Clima-Junin-1.png)
 
 
-![Pantalla 2](Clima-Junin-2.png)
+![P2](Clima-Junin-2.png)
 
