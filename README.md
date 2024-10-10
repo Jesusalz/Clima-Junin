@@ -6,7 +6,7 @@ Esta aplicación de clima permite a los usuarios buscar el clima actual y la pre
 
 - 🌆 **Búsqueda de Ciudad**: Permite a los usuarios buscar el clima de cualquier ciudad ingresando su nombre.
 - 🌡️ **Información Detallada**: Muestra información detallada sobre el clima actual, incluyendo temperatura, sensación térmica, presión, visibilidad y condiciones climáticas.
-- 📅 **Pronóstico a 5 Días**: Proporciona un pronóstico de los próximos días con información sobre temperaturas mínimas y máximas.
+- 📅 **Pronóstico a 7 Días**: Proporciona un pronóstico de los próximos días con información sobre temperaturas mínimas y máximas.
 - 🌙 **Modo Oscuro**: Los usuarios pueden alternar entre el modo claro y oscuro, mejorando la experiencia visual según la preferencia personal.
 - 🎨 **Diseño Atractivo**: Utiliza Tailwind CSS para un diseño moderno y responsivo, con animaciones suaves.
 
@@ -20,4 +20,8 @@ Esta aplicación de clima permite a los usuarios buscar el clima actual y la pre
 
 ## 📸 Capturas de Pantalla
 
+![Pantalla 1](Clima-Junin-1.png)
+
+
+![Pantalla 2](Clima-Junin-2.png)
 
