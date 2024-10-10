@@ -35,7 +35,7 @@ body {
 }
 
 .bg-cloudy {
-  background: linear-gradient(to bottom, #d3d3d3, #a9a9a9);
+  background: linear-gradient(to bottom, rgb(170, 127, 65), #181616);
 }
 
 .bg-rainy {
