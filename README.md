@@ -23,5 +23,5 @@ Esta aplicación de clima permite a los usuarios buscar el clima actual y la pre
 ![P1](public/Clima-Junin-1.png)
 
 
-![P2](Clima-Junin-2.png)
+![P2](public/Clima-Junin-2.png)
 
