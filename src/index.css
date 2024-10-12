@@ -14,7 +14,7 @@ body.dark {
 
 .bg-sunny {
   background: linear-gradient(to bottom, #87CEEB, #E0F6FF);
-  animation: sunny-animation 10s ease infinite;
+  animation: sunny-animation 0s ease infinite;
 }
 
 .bg-cloudy {
