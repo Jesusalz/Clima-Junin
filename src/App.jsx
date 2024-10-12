@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Sun, Cloud, CloudRain, Wind, Thermometer, Moon, Search } from 'lucide-react';
 import './index.css';
 
-const API_KEY = import.meta.env.VITE_API_KEY || '587d12f484265303f4ceb2a6932ae3fb';
+const API_KEY = import.meta.env.VITE_API_KEY || '587d12f484265303f4ceb2a6932ae3fb'; 
 
 function App() {
   const [city, setCity] = useState('Junin,AR');
@@ -31,6 +31,22 @@ function App() {
 
     fetchWeather();
   }, [city]);
+
+  useEffect(() => {
+    document.body.classList.toggle('dark', isDarkMode);
+  }, [isDarkMode]);
+
+  const getWeatherBackground = (weatherMain) => {
+    if (weatherMain.toLowerCase() === 'clear') {
+      return 'bg-sunny';
+    } else if (weatherMain.toLowerCase() === 'clouds') {
+      return 'bg-cloudy';
+    } else if (weatherMain.toLowerCase().includes('rain')) {
+      return 'bg-rainy';
+    } else {
+      return 'bg-default';
+    }
+  };
 
   const weatherIcons = {
     clear: <Sun className="w-12 h-12 text-yellow-400 animate-float" />,
@@ -61,18 +77,17 @@ function App() {
 
   const dailyForecast = forecast.list.filter((item, index) => index % 8 === 0).slice(0, 7);
 
-  const weatherMain = weather.weather[0].main.toLowerCase();
-  const backgroundClass = weatherMain === 'clear' ? 'bg-sunny' :
-                           weatherMain === 'clouds' ? 'bg-cloudy' :
-                           weatherMain === 'rain' ? 'bg-rainy' :
-                           weather.main.temp > 30 ? 'bg-hot' :
-                           'bg-gradient-to-br from-blue-400 to-purple-500';
+  const weatherBackground = getWeatherBackground(weather.weather[0].main);
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'night-mode' : backgroundClass}`}>
-      <div className="max-w-4xl mx-auto">
+    <div className={`min-h-screen ${weatherBackground} text-white p-8 transition-colors duration-500`}>
+      <div className="cloud"></div>
+      <div className="cloud" style={{ top: '20%', left: '60%', animationDelay: '-5s' }}></div>
+      {weatherBackground === 'bg-rainy' && <div className="rain"></div>}
+      {weatherBackground === 'bg-sunny' && <div className="sun"></div>}
+      <div className="max-w-4xl mx-auto relative z-10">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold text-white">{city}</h1>
+          <h1 className="text-4xl font-bold">{city}</h1>
           <button
             onClick={toggleDarkMode}
             className="p-2 rounded-full bg-white text-black focus:outline-none shadow-lg"
@@ -88,14 +103,14 @@ function App() {
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Buscar ciudad..."
             className="p-2 rounded-l-md w-full h-10 text-sm focus:outline-none text-black placeholder-gray-500"
-            style={{ backgroundColor: isDarkMode ? '#333' : '#f7f7f7', color: isDarkMode ? '#fff' : '#000' }}
+            style={{ backgroundColor: isDarkMode ? '#4a5568' : '#f7f7f7' }}
           />
           <button type="submit" className="p-2 bg-white text-black rounded-r-md h-10">
             <Search className="w-5 h-5" />
           </button>
         </form>
 
-        <div className="bg-white bg-opacity-20 backdrop-blur-md rounded-lg p-6 mb-8 shadow-lg text-white">
+        <div className="bg-white bg-opacity-20 backdrop-blur-md rounded-lg p-6 mb-8 shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-3xl font-semibold">{Math.round(weather.main.temp)}°C</h2>
@@ -118,17 +133,19 @@ function App() {
           </div>
         </div>
 
-        <h3 className="text-2xl font-semibold mb-4 text-white">Próximos días</h3>
+        <h3 className="text-2xl font-semibold mb-4">Próximos días</h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
           {dailyForecast.map((day) => (
             <div
               key={day.dt}
-              className="bg-white bg-opacity-20 backdrop-blur-md rounded-lg p-4 text-center shadow-lg text-white"
+              className="bg-white bg-opacity-20 backdrop-blur-md rounded-lg p-4 text-center shadow-lg"
             >
               <p className="font-semibold">
                 {new Date(day.dt * 1000).toLocaleDateString('es-AR', { weekday: 'long' })}
               </p>
-              <p>{Math.round(day.main.temp_min)}°C / {Math.round(day.main.temp_max)}°C</p>
+              <p>{new Date(day.dt * 1000).toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit' })}</p>
+              <p>{new Date(day.dt * 1000).toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' })}</p>
+              <p className="text-2xl font-bold">{Math.round(day.main.temp)}°C</p>
               {getWeatherIcon(day.weather[0].main)}
             </div>
           ))}

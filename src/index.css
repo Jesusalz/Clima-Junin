@@ -2,104 +2,152 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-  background-color: #f0f0f0;
-  color: #333;
+  font-family: 'Inter', sans-serif;
+  transition: background-color 0.5s ease;
 }
 
-
-.night-mode {
-  background-color: rgb(15, 37, 78);
-  color: #ffffff;
+body.dark {
+  background-color: #1a202c;
+  color: #e2e8f0;
 }
-
-.night-mode input {
-  background-color: #333;
-  color: #ffffff;
-}
-
-.night-mode .bg-white {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.night-mode .text-white {
-  color: #ffffff;
-}
-
 
 .bg-sunny {
-  background: linear-gradient(to bottom, #0099ff, rgb(250, 59, 1));
+  background: linear-gradient(to bottom, #87CEEB, #E0F6FF);
+  animation: sunny-animation 10s ease infinite;
 }
 
 .bg-cloudy {
-  background: linear-gradient(to bottom, rgb(170, 127, 65), #181616);
+  background: linear-gradient(to bottom, #708090, #C0C0C0);
+  animation: cloudy-animation 10s ease infinite;
 }
 
 .bg-rainy {
-  background: linear-gradient(to bottom, #3a7bd5, #00d2ff);
+  background: linear-gradient(to bottom, #4682B4, #778899);
+  animation: rainy-animation 10s ease infinite;
 }
 
-.bg-hot {
-  background: linear-gradient(to bottom, #ff512f, #f09819);
+.bg-default {
+  background: linear-gradient(to bottom, #4a0396, #2575fc);
+  animation: default-animation 10s ease infinite;
 }
 
-
-button {
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
-  color: inherit;
+@keyframes sunny-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-
-input {
-  border: none;
-  padding: 0.5rem;
-  border-radius: 4px;
+@keyframes cloudy-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-input:focus {
-  outline: none;
+@keyframes rainy-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-
-.weather-container {
-  background-color: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(5px);
-  border-radius: 10px;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
+@keyframes default-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-
-.forecast-card {
-  background-color: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(5px);
-  border-radius: 10px;
-  padding: 1rem;
-  text-align: center;
+/* Cloud animation */
+.cloud {
+  position: absolute;
+  width: 200px;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 200px;
+  animation: float 8s ease-in-out infinite;
 }
 
-.forecast-card p {
-  margin: 0;
+.cloud:before,
+.cloud:after {
+  content: '';
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.7);
+  width: 100px;
+  height: 80px;
+  top: -15px;
+  left: 10px;
+  border-radius: 100px;
 }
 
-
-.animate-float {
-  animation: float 2s infinite ease-in-out;
+.cloud:after {
+  width: 120px;
+  height: 120px;
+  top: -55px;
+  left: auto;
+  right: 15px;
 }
 
 @keyframes float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Rain animation */
+.rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 100%);
+  background-size: 20px 200px;
+  animation: rain 0.5s linear infinite;
+}
+
+@keyframes rain {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 200px; }
+}
+
+/* Sun animation */
+.sun {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 80px;
+  height: 80px;
+  background-color: #FFD700;
+  border-radius: 50%;
+  box-shadow: 0 0 50px #FFD700;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.dark .bg-sunny,
+.dark .bg-cloudy,
+.dark .bg-rainy,
+.dark .bg-default {
+  filter: brightness(0.5);
+}
+
+.dark .cloud,
+.dark .cloud:before,
+.dark .cloud:after {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.dark .sun {
+  background-color: #FFA500;
+  box-shadow: 0 0 50px #FFA500;
+}
+
+.dark .rain {
+  background-image: 
+    linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 100%);
 }
